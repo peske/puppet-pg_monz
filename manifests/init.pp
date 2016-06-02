@@ -191,7 +191,7 @@ class pg_monz (
   
   # Log files permissions:
   file { 'pgpool.log': 
-    path => "${pgpoollogfile}/${pgpoollogfile}", 
+    path => "${pgpoollogdir}/${pgpoollogfile}", 
     mode => '0664', 
   }
   
@@ -212,7 +212,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/find_dbname.sh",
+    source  => "puppet:///modules/pg_monz/find_dbname.sh",
     require => File['scriptdir'], 
   }
   
@@ -221,7 +221,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/find_dbname_table.sh",
+    source  => "puppet:///modules/pg_monz/find_dbname_table.sh",
     require => File['scriptdir'], 
   }
   
@@ -230,7 +230,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/find_pgpool_backend.sh",
+    source  => "puppet:///modules/pg_monz/find_pgpool_backend.sh",
     require => File['scriptdir'], 
   }
   
@@ -239,7 +239,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/find_pgpool_backend_ip.sh",
+    source  => "puppet:///modules/pg_monz/find_pgpool_backend_ip.sh",
     require => File['scriptdir'], 
   }
   
@@ -248,7 +248,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/find_sr.sh",
+    source  => "puppet:///modules/pg_monz/find_sr.sh",
     require => File['scriptdir'], 
   }
   
@@ -257,7 +257,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/find_sr_client_ip.sh",
+    source  => "puppet:///modules/pg_monz/find_sr_client_ip.sh",
     require => File['scriptdir'], 
   }
   
@@ -266,7 +266,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgpool_backend_status.sh",
+    source  => "puppet:///modules/pg_monz/pgpool_backend_status.sh",
     require => File['scriptdir'], 
   }
   
@@ -275,7 +275,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgpool_cache.sh",
+    source  => "puppet:///modules/pg_monz/pgpool_cache.sh",
     require => File['scriptdir'], 
   }
   
@@ -284,7 +284,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgpool_connections.sh",
+    source  => "puppet:///modules/pg_monz/pgpool_connections.sh",
     require => File['scriptdir'], 
   }
   
@@ -293,7 +293,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgpool_delegate_ip.sh",
+    source  => "puppet:///modules/pg_monz/pgpool_delegate_ip.sh",
     require => File['scriptdir'], 
   }
   
@@ -302,7 +302,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgpool_simple.sh",
+    source  => "puppet:///modules/pg_monz/pgpool_simple.sh",
     require => File['scriptdir'], 
   }
   
@@ -311,7 +311,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_db_funcs.sh",
+    source  => "puppet:///modules/pg_monz/pgsql_db_funcs.sh",
     require => File['scriptdir'], 
   }
   
@@ -320,7 +320,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_primary.sh",
+    source  => "puppet:///modules/pg_monz/pgsql_primary.sh",
     require => File['scriptdir'], 
   }
   
@@ -329,7 +329,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_server_funcs.sh",
+    source  => "puppet:///modules/pg_monz/pgsql_server_funcs.sh",
     require => File['scriptdir'], 
   }
   
@@ -338,7 +338,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_simple.sh",
+    source  => "puppet:///modules/pg_monz/pgsql_simple.sh",
     require => File['scriptdir'], 
   }
   
@@ -347,7 +347,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_sr_server_funcs.sh",
+    source  => "puppet:///modules/pg_monz/pgsql_sr_server_funcs.sh",
     require => File['scriptdir'], 
   }
   
@@ -356,7 +356,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_standby.sh",
+    source  => "puppet:///modules/pg_monz/pgsql_standby.sh",
     require => File['scriptdir'], 
   }
   
@@ -365,7 +365,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_tbl_funcs.sh",
+    source  => "puppet:///modules/pg_monz/pgsql_tbl_funcs.sh",
     require => File['scriptdir'], 
   }
   
@@ -374,7 +374,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0754', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_userdb_funcs.sh",
+    source  => "puppet:///modules/pg_monz/pgsql_userdb_funcs.sh",
     require => File['scriptdir'], 
   }
   
@@ -390,7 +390,7 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0644', 
-    source  => "puppet:///modules/fdpg_monz/pgsql_funcs.conf",
+    content => template('pg_monz/pgsql_funcs.conf.erb'),
     require => File['script_confdir'], 
   }
   
@@ -399,14 +399,13 @@ class pg_monz (
     ensure  => 'file', 
     owner   => $zabbix_user, 
     mode    => '0644', 
-    source  => "puppet:///modules/fdpg_monz/pgpool_funcs.conf",
+    content => template('pg_monz/pgpool_funcs.conf.erb'),
     require => File['script_confdir'], 
   }
   
   # Zabbix conf:
   zabbix::userparameters { 'userparameter_pgsql':
-    source  => 'puppet:///modules/fdpg_monz/userparameter_pgsql.conf',
-    require => Class['zabbix::agent'], 
+    source  => 'puppet:///modules/pg_monz/userparameter_pgsql.conf',
   }
 
 }

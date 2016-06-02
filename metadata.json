@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "summary": "Installs and configures pg_monz.",
   "source": "https://github.com/peske/puppet-pg_monz",
-  "project_page": "https://github.com/peske/puppet-pg_monz",
+  "project_page": "https://www.itenlight.com/blog/2016/06/02/Puppet%2C+Zabbix%2C+PostgreSQL+and+pgpool-II+Together+-+pg_monz+Module",
   "issues_url": "https://github.com/peske/puppet-pg_monz/issues",
   "tags": ["Ubuntu", "PostgreSQL", "pgpool2", "Zabbix"],
   "operatingsystem_support": [
