@@ -10,61 +10,80 @@
 #
 # [*templates_dir*]
 #   Directory where template xml files will be stored.
-#   Default: /etc/zabbix/templates
+#   IMPORTANT: No trailing slash!
+#   Default:   /etc/zabbix/templates
 #
 # [*zabbix_agentd_conf*]
 #   Sets default {$ZABBIX_AGENTD_CONF} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
 #   Macro value can be changed later through Zabbix web interface.
-#   Default: /etc/zabbix/zabbix_agentd.conf
+#   Default:   /etc/zabbix/zabbix_agentd.conf
 #
 # [*pgpool_host_group*]
 #   Sets default {$PGPOOL_HOST_GROUP} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
 #   Macro value can be changed later through Zabbix web interface.
-#   Default: pgpool
+#   Default:   pgpool
 #
 # [*pgpoollogdir*]
 #   Sets default {$PGPOOLLOGDIR} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Macro value can be changed later through Zabbix web interface.
-#   Default: /var/log/pgpool
+#   Macro value can be changed later through Zabbix web interface, 
+#   but finally it should match to pg_monz::pgpoollogdir set at 
+#   client side.
+#   IMPORTANT: No trailing slash!
+#   Default:   /var/log/pgpool
 #
 # [*pgpoolscriptdir*]
 #   Sets default {$PGPOOLSCRIPTDIR} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Macro value can be changed later through Zabbix web interface.
-#   Default: /usr/local/bin
+#   Macro value can be changed later through Zabbix web interface, 
+#   but finally it should match to pg_monz::scriptdir set at 
+#   client side.
+#   IMPORTANT: No trailing slash!
+#   Default:   /usr/local/bin
 #
 # [*pgpoolscript_confdir*]
 #   Sets default {$PGPOOLSCRIPT_CONFDIR} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Macro value can be changed later through Zabbix web interface.
-#   Default: /usr/local/etc
+#   Macro value can be changed later through Zabbix web interface, 
+#   but finally it should match to pg_monz::script_confdir set at 
+#   client side.
+#   IMPORTANT: No trailing slash!
+#   Default:   /usr/local/etc
 #
 # [*pg_host_group*]
 #   Sets default {$PG_HOST_GROUP} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
 #   Macro value can be changed later through Zabbix web interface.
-#   Default: PostgreSQL
+#   Default:   PostgreSQL
 #
 # [*pgscriptdir*]
 #   Sets default {$PGSCRIPTDIR} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Macro value can be changed later through Zabbix web interface.
-#   Default: /usr/local/bin
+#   Macro value can be changed later through Zabbix web interface, 
+#   but finally it should match to pg_monz::scriptdir set at client
+#   side.
+#   IMPORTANT: No trailing slash!
+#   Default:   /usr/local/bin
 #
 # [*pgscript_confdir*]
 #   Sets default {$PGSCRIPT_CONFDIR} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Macro value can be changed later through Zabbix web interface.
-#   Default: /usr/local/etc
+#   Macro value can be changed later through Zabbix web interface, 
+#   but finally it should match to pg_monz::script_confdir set at 
+#   client side.
+#   IMPORTANT: No trailing slash!
+#   Default:   /usr/local/etc
 #
 # [*pglogdir*]
 #   Sets default {$PGLOGDIR} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Macro value can be changed later through Zabbix web interface.
-#   Default: /var/log/postgresql
+#   Macro value can be changed later through Zabbix web interface, 
+#   but finally it should match to pg_monz::pglogdir set at client
+#   side.
+#   IMPORTANT: No trailing slash!
+#   Default:   /var/log/postgresql
 #
 # === Example
 #

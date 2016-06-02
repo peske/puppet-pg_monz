@@ -1,3 +1,50 @@
 # pg_monz #
 
-This is the pg_monz module. It provides...
+The module installs and configures [pg_monz monitoring Zabbix template](http://pg-monz.github.io/pg_monz/index-en.html).
+
+## Server Side
+
+At the server side (at Zabbix server), the module only installs the following Zabbix templates:
+* Template App PostgreSQL
+* Template App PostgreSQL SR
+* Template App PostgreSQL SR Cluster
+* Template App pgpool-II
+* Template App pgpool-II watchdog
+
+**Note:** Although all the templates are installed, which will be used for a particular client depends on the client's configuration. See [Creating Host section](http://pg-monz.github.io/pg_monz/index-en.html#creating-host) in the original documentation.
+
+### Server Side Requirements
+
+The module requires 'zabbix' class at the server side. See [puppet/zabbix module](https://forge.puppet.com/puppet/zabbix) at puppetforge).
+
+### pg_monz Server Side Example
+
+```
+class { 'pg_monz::server': }
+```
+
+## Client Side
+
+At the client side (monitored PostgreSQL / pgpool-II server) the module installs pg_monz scripts and configuration files.
+
+### Client Side Requirements
+
+The module requires 'zabbix-agent' and 'zabbix-sender' classes at the client side. Again, see [puppet/zabbix module](https://forge.puppet.com/puppet/zabbix) at puppetforge).
+
+### pg_monz Client Side Examples
+
+Basic example (with default values) is pretty simple:
+
+```
+class { 'pg_monz': }
+```
+
+In reality however, chances are that you'll have to specify some parameters. An example with parameters that are often different than default values:
+
+```
+class { 'pg_monz':
+  pgrolepassword => 'my_postgres_password', 
+  pgpoolconf     => '/etc/pgpool2/3.5.2/pgpool.conf', 
+  pglogfile      => 'postgresql-9.4-main.log', 
+}
+```

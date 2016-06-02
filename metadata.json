@@ -4,9 +4,9 @@
   "author": "Fat Dragon", 
   "license": "Apache-2.0",
   "summary": "Installs and configures pg_monz.",
-  "source": "",
-  "project_page": "",
-  "issues_url": "",
+  "source": "https://github.com/peske/puppet-pg_monz",
+  "project_page": "https://github.com/peske/puppet-pg_monz",
+  "issues_url": "https://github.com/peske/puppet-pg_monz/issues",
   "tags": ["Ubuntu", "PostgreSQL", "pgpool2", "Zabbix"],
   "operatingsystem_support": [
   	{
