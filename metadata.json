@@ -1,0 +1,20 @@
+{
+  "name": "fatdragon-pg_monz",
+  "version": "0.1.0", 
+  "author": "Fat Dragon", 
+  "license": "Apache-2.0",
+  "summary": "Installs and configures pg_monz.",
+  "source": "",
+  "project_page": "",
+  "issues_url": "",
+  "tags": ["Ubuntu", "PostgreSQL", "pgpool2", "Zabbix"],
+  "operatingsystem_support": [
+  	{
+        "operatingsystem": "Ubuntu",
+        "operatingsystemrelease": [ "16.04", "14.04", "15.10", "12.04" ]
+    }],
+    "dependencies": [
+    	{ "name": "puppet/zabbix", "version_requirement": ">= 2.3.2" }, 
+    	{ "name": "puppetlabs/stdlib","version_requirement":">= 4.12.0"},
+    ]
+}
