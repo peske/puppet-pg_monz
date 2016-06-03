@@ -2,6 +2,8 @@
 
 The module installs and configures [pg_monz monitoring Zabbix template](http://pg-monz.github.io/pg_monz/index-en.html).
 
+The complete tutorial can be found [here](https://www.itenlight.com/blog/2016/06/02/Puppet%2C+Zabbix%2C+PostgreSQL+and+pgpool-II+Together+-+pg_monz+Module).
+
 ## Server Side
 
 At the server side (at Zabbix server), the module only installs the following Zabbix templates:
@@ -22,6 +24,8 @@ The module requires 'zabbix' class at the server side. See [puppet/zabbix module
 ```
 class { 'pg_monz::server': }
 ```
+
+**Note:** The class will automatically install the templates only if you're using [puppet/zabbix module](https://forge.puppet.com/puppet/zabbix) with `manage_resources` set to `true`. See [mentioned tutorial](https://www.itenlight.com/blog/2016/06/02/Puppet%2C+Zabbix%2C+PostgreSQL+and+pgpool-II+Together+-+pg_monz+Module) for details.
 
 ## Client Side
 
@@ -48,3 +52,19 @@ class { 'pg_monz':
   pglogfile      => 'postgresql-9.4-main.log', 
 }
 ```
+
+## Release History
+
+### v0.1.1
+
+**Date:** 3. Jun 2016
+
+**Release Info:**
+* Code cosmetics (thanks to puppet-lint).
+
+### v0.1.0
+
+**Date:** 3. Jun 2016
+
+**Release Info:**
+* Initial releaze.
