@@ -4,6 +4,12 @@ The module installs and configures [pg_monz monitoring Zabbix template](http://p
 
 The complete tutorial can be found [here](https://www.itenlight.com/blog/2016/06/02/Puppet%2C+Zabbix%2C+PostgreSQL+and+pgpool-II+Together+-+pg_monz+Module).
 
+## Bug in v0.1.1
+
+I must start with an apology because of a bug in version 0.1.1 of the module which caused that manifests that are including `pg_monz::server` class won't even compile at the server. The bug is caused by puppet-lint auto-fix feature which removed quotes from 'true' command. In the newest version 'true' is replaced with '/bin/true' to avoid any confusion. As it usually happens in life, the first 29 downloaders actually downloaded this exact version :( 
+
+What to say... Sorry for inconvenience!
+
 ## Server Side
 
 At the server side (at Zabbix server), the module only installs the following Zabbix templates:
@@ -17,7 +23,7 @@ At the server side (at Zabbix server), the module only installs the following Za
 
 ### Server Side Requirements
 
-The module requires 'zabbix' class at the server side. See [puppet/zabbix module](https://forge.puppet.com/puppet/zabbix) at puppetforge).
+The module requires 'zabbix' class at the server side. See [puppet/zabbix module](https://forge.puppet.com/puppet/zabbix) at puppet forge).
 
 ### pg_monz Server Side Example
 
@@ -33,7 +39,7 @@ At the client side (monitored PostgreSQL / pgpool-II server) the module installs
 
 ### Client Side Requirements
 
-The module requires 'zabbix-agent' and 'zabbix-sender' classes at the client side. Again, see [puppet/zabbix module](https://forge.puppet.com/puppet/zabbix) at puppetforge).
+The module requires 'zabbix-agent' and 'zabbix-sender' classes at the client side. Again, see [puppet/zabbix module](https://forge.puppet.com/puppet/zabbix) at puppet forge).
 
 ### pg_monz Client Side Examples
 
@@ -55,16 +61,30 @@ class { 'pg_monz':
 
 ## Release History
 
+### v0.1.3
+
+**Date:** 3. June 2016
+
+**Release Info:**
+* Using '/bin/true' instead of 'true' to avoid negative quality points.
+
+### v0.1.2
+
+**Date:** 3. June 2016
+
+**Release Info:**
+* A bug caused by puppet-lint auto fix (removing quotes from 'true') fixed.
+
 ### v0.1.1
 
-**Date:** 3. Jun 2016
+**Date:** 3. June 2016
 
 **Release Info:**
 * Code cosmetics (thanks to puppet-lint).
 
 ### v0.1.0
 
-**Date:** 3. Jun 2016
+**Date:** 3. June 2016
 
 **Release Info:**
-* Initial releaze.
+* Initial release.
