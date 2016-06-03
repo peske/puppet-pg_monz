@@ -61,30 +61,37 @@ class { 'pg_monz':
 
 ## Release History
 
-### v0.1.3
+### v0.1.4
 
-**Date:** 3. June 2016
+**Date:** Jun 3. 2016
 
 **Release Info:**
-* Using '/bin/true' instead of 'true' to avoid negative quality points.
+* Metadata cosmetics, to satisfy puppet forge criteria.
+
+### v0.1.3
+
+**Date:** Jun 3. 2016
+
+**Release Info:**
+* Using `'/bin/true'` instead of `'true'` to avoid negative quality points.
 
 ### v0.1.2
 
-**Date:** 3. June 2016
+**Date:** Jun 3. 2016
 
 **Release Info:**
 * A bug caused by puppet-lint auto fix (removing quotes from 'true') fixed.
 
 ### v0.1.1
 
-**Date:** 3. June 2016
+**Date:** Jun 3. 2016
 
 **Release Info:**
 * Code cosmetics (thanks to puppet-lint).
 
 ### v0.1.0
 
-**Date:** 3. June 2016
+**Date:** Jun 3. 2016
 
 **Release Info:**
 * Initial release.
