@@ -10,8 +10,9 @@
 #
 # [*templates_dir*]
 #   Directory where template xml files will be stored.
+#   Should match to zabbix::web::zabbix_template_dir
 #   IMPORTANT: No trailing slash!
-#   Default:   /etc/zabbix/templates
+#   Default:   /etc/zabbix/imported_templates
 #
 # [*zabbix_agentd_conf*]
 #   Sets default {$ZABBIX_AGENTD_CONF} macro value.
@@ -99,7 +100,7 @@
 # Copyright 2016 IT Enlight
 #
 class pg_monz::server (
-  $templates_dir = '/etc/zabbix/templates', 
+  #$templates_dir = '/etc/zabbix/templates', 
   $zabbix_agentd_conf = '/etc/zabbix/zabbix_agentd.conf', 
   $pgpool_host_group = 'pgpool', 
   $pgpoollogdir = '/var/log/pgpool', 
@@ -111,82 +112,127 @@ class pg_monz::server (
   $pglogdir = '/var/log/postgresql', 
 ) {
 
+  $templates_dir = $zabbix::params::zabbix_template_dir
+  
   file { 'templates_dir': 
     path    => $templates_dir, 
     ensure  => directory, 
     owner   => 'zabbix', 
+    group   => 'zabbix', 
     mode    => '0644', 
     require => Class['zabbix'], 
   }
   
-  file { 'Template_App_pgpool-II_watchdog.xml': 
-    path    => "${templates_dir}/Template_App_pgpool-II_watchdog.xml", 
-    owner   => 'zabbix', 
-    mode    => '0644', 
-    content => template('fdpg_monz/Template_App_pgpool-II_watchdog.xml.erb'), 
+  exec { 'check Template App pgpool-II watchdog': 
+    command => 'true', 
+    path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin', '/usr/local/bin'], 
+    onlyif  => "test ! -f ${templates_dir}/Template App pgpool-II watchdog.xml", 
     require => File['templates_dir'], 
   }
   
-  zabbix-template { 'Template App pgpool-II watchdog': 
+  file { 'Template_App_pgpool-II_watchdog.xml': 
+    path    => "/tmp/Template_App_pgpool-II_watchdog.xml", 
+    owner   => 'zabbix', 
+    group   => 'zabbix', 
+    mode    => '0644', 
+    content => template('pg_monz/Template_App_pgpool-II_watchdog.xml.erb'), 
+    require => Exec['check Template App pgpool-II watchdog'], 
+  }
+  
+  zabbix::template { 'Template App pgpool-II watchdog': 
     templ_name   => 'Template App pgpool-II watchdog', 
-    templ_source => "${templates_dir}/Template_App_pgpool-II_watchdog.xml", 
-    require      => File['Template_App_pgpool-II_watchdog.xml'], 
+    templ_source => '/tmp/Template_App_pgpool-II_watchdog.xml',
+    require      => [ File['Template_App_pgpool-II_watchdog.xml'], Exec['check Template App pgpool-II watchdog'] ],  
+  }
+  
+  exec { 'check Template App pgpool-II': 
+    command => 'true', 
+    path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin', '/usr/local/bin'], 
+    onlyif  => "test ! -f ${templates_dir}/Template App pgpool-II.xml", 
+    require => File['templates_dir'], 
   }
   
   file { 'Template_App_pgpool-II.xml': 
-    path    => "${templates_dir}/Template_App_pgpool-II.xml", 
+    path    => "/tmp/Template_App_pgpool-II.xml", 
     owner   => 'zabbix', 
+    group   => 'zabbix', 
     mode    => '0644', 
-    content => template('fdpg_monz/Template_App_pgpool-II.xml.erb'), 
-    require => File['templates_dir'], 
+    content => template('pg_monz/Template_App_pgpool-II.xml.erb'), 
+    require => Exec['check Template App pgpool-II'], 
   }
   
-  zabbix-template { 'Template App pgpool-II': 
+  zabbix::template { 'Template App pgpool-II': 
     templ_name   => 'Template App pgpool-II', 
-    templ_source => "${templates_dir}/Template_App_pgpool-II.xml", 
-    require      => File['Template_App_pgpool-II.xml'], 
+    templ_source => '/tmp/Template_App_pgpool-II.xml',
+    require      => [ File['Template_App_pgpool-II.xml'], Exec['check Template App pgpool-II'] ],  
+  }
+  
+  exec { 'check Template App PostgreSQL SR Cluster': 
+    command => 'true', 
+    path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin', '/usr/local/bin'], 
+    onlyif  => "test ! -f ${templates_dir}/Template App PostgreSQL SR Cluster.xml", 
+    require => File['templates_dir'], 
   }
   
   file { 'Template_App_PostgreSQL_SR_Cluster.xml': 
-    path    => "${templates_dir}/Template_App_PostgreSQL_SR_Cluster.xml", 
+    path    => "/tmp/Template_App_PostgreSQL_SR_Cluster.xml", 
     owner   => 'zabbix', 
+    group   => 'zabbix', 
     mode    => '0644', 
-    content => template('fdpg_monz/Template_App_PostgreSQL_SR_Cluster.xml.erb'), 
-    require => File['templates_dir'], 
+    content => template('pg_monz/Template_App_PostgreSQL_SR_Cluster.xml.erb'), 
+    require => Exec['check Template App PostgreSQL SR Cluster'], 
   }
   
-  zabbix-template { 'Template App PostgreSQL SR Cluster': 
+  zabbix::template { 'Template App PostgreSQL SR Cluster': 
     templ_name   => 'Template App PostgreSQL SR Cluster', 
-    templ_source => "${templates_dir}/Template_App_PostgreSQL_SR_Cluster.xml", 
-    require      => File['Template_App_PostgreSQL_SR_Cluster.xml'], 
+    templ_source => '/tmp/Template_App_PostgreSQL_SR_Cluster.xml',
+    require      => [ File['Template_App_PostgreSQL_SR_Cluster.xml'], Exec['check Template App PostgreSQL SR Cluster'] ],  
   }
   
-  file { 'Template_App_PostgreSQL_SR.xml': 
-    path    => "${templates_dir}/Template_App_PostgreSQL_SR.xml", 
-    owner   => 'zabbix', 
-    mode    => '0644', 
-    content => template('fdpg_monz/Template_App_PostgreSQL_SR.xml.erb'), 
+  exec { 'check Template App PostgreSQL': 
+    command => 'true', 
+    path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin', '/usr/local/bin'], 
+    onlyif  => "test ! -f ${templates_dir}/Template App PostgreSQL.xml", 
     require => File['templates_dir'], 
-  }
-  
-  zabbix-template { 'Template App PostgreSQL SR': 
-    templ_name   => 'Template App PostgreSQL SR', 
-    templ_source => "${templates_dir}/Template_App_PostgreSQL_SR.xml", 
-    require      => File['Template_App_PostgreSQL_SR.xml'], 
   }
   
   file { 'Template_App_PostgreSQL.xml': 
-    path    => "${templates_dir}/Template_App_PostgreSQL.xml", 
+    path    => "/tmp/Template_App_PostgreSQL.xml", 
     owner   => 'zabbix', 
+    group   => 'zabbix', 
     mode    => '0644', 
-    content => template('fdpg_monz/Template_App_PostgreSQL.xml.erb'), 
+    content => template('pg_monz/Template_App_PostgreSQL.xml.erb'), 
+    require => Exec['check Template App PostgreSQL'], 
+  }
+  
+  zabbix::template { 'Template App PostgreSQL': 
+    templ_name   => 'Template App PostgreSQL', 
+    templ_source => '/tmp/Template_App_PostgreSQL.xml',
+    require      => [ File['Template_App_PostgreSQL.xml'], Exec['check Template App PostgreSQL'] ],  
+  }
+  
+  exec { 'check Template App PostgreSQL SR': 
+    command => 'true', 
+    path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin', '/usr/local/bin'], 
+    onlyif  => "test ! -f ${templates_dir}/Template App PostgreSQL SR.xml", 
     require => File['templates_dir'], 
   }
   
-  zabbix-template { 'Template App PostgreSQL': 
-    templ_name   => 'Template App PostgreSQL', 
-    templ_source => "${templates_dir}/Template_App_PostgreSQL.xml", 
-    require      => File['Template_App_PostgreSQL.xml'], 
+  file { 'Template_App_PostgreSQL_SR.xml': 
+    path    => "/tmp/Template_App_PostgreSQL_SR.xml", 
+    owner   => 'zabbix', 
+    group   => 'zabbix', 
+    mode    => '0644', 
+    content => template('pg_monz/Template_App_PostgreSQL_SR.xml.erb'), 
+    require => Exec['check Template App PostgreSQL SR'], 
+  }
+  
+  zabbix::template { 'Template App PostgreSQL SR': 
+    templ_name   => 'Template App PostgreSQL SR', 
+    templ_source => '/tmp/Template_App_PostgreSQL_SR.xml',
+    require      => [ File['Template_App_PostgreSQL_SR.xml'], 
+                      Exec['check Template App PostgreSQL SR'], 
+                      Zabbix::Template['Template App PostgreSQL'] ],  
   }
   
 }

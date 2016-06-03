@@ -23,30 +23,6 @@
 #   IMPORTANT: No trailing slash!
 #   Default:   /var/lib/zabbix
 #
-# [*pgpoolhost*]
-#   Used for PGPOOLHOST value in pgpool_funcs.conf file. 
-#   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Default:   127.0.0.1
-#
-# [*pgpoolport*]
-#   Used for PGPOOLPORT value in pgpool_funcs.conf file. 
-#   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Default:   9999
-#
-# [*pgpoolrole*]
-#   Used for PGPOOLROLE value in pgpool_funcs.conf file. 
-#   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Default:   postgres
-#
-# [*pgpoolrolepassword*]
-#   Password of user defined by pgpoolrole. 
-#   Default:   '' (empty)
-#
-# [*pgpooldatabase*]
-#   Used for PGPOOLDATABASE value in pgpool_funcs.conf file. 
-#   See http://pg-monz.github.io/pg_monz/index-en.html for details.
-#   Default:   postgres
-#
 # [*pghost*]
 #   Used for PGHOST value in pgsql_funcs.conf file. 
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
@@ -68,6 +44,30 @@
 #
 # [*pgdatabase*]
 #   Used for PGDATABASE value in pgsql_funcs.conf file. 
+#   See http://pg-monz.github.io/pg_monz/index-en.html for details.
+#   Default:   postgres
+#
+# [*pgpoolhost*]
+#   Used for PGPOOLHOST value in pgpool_funcs.conf file. 
+#   See http://pg-monz.github.io/pg_monz/index-en.html for details.
+#   Default:   127.0.0.1
+#
+# [*pgpoolport*]
+#   Used for PGPOOLPORT value in pgpool_funcs.conf file. 
+#   See http://pg-monz.github.io/pg_monz/index-en.html for details.
+#   Default:   9999
+#
+# [*pgpoolrole*]
+#   Used for PGPOOLROLE value in pgpool_funcs.conf file. 
+#   See http://pg-monz.github.io/pg_monz/index-en.html for details.
+#   Default:   postgres
+#
+# [*pgpoolrolepassword*]
+#   Password of user defined by pgpoolrole. 
+#   Default:   '' (empty)
+#
+# [*pgpooldatabase*]
+#   Used for PGPOOLDATABASE value in pgpool_funcs.conf file. 
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
 #   Default:   postgres
 #
@@ -126,6 +126,12 @@
 class pg_monz (
   $zabbix_user = 'zabbix', 
   $zabbix_user_homedir = '/var/lib/zabbix', 
+#pgsql_funcs.conf
+  $pghost = '127.0.0.1', 
+  $pgport = 5432, 
+  $pgrole = 'postgres', 
+  $pgrolepassword = '', 
+  $pgdatabase = 'postgres', 
 #pgpool_funcs.conf
   $pgpoolhost = '127.0.0.1', 
   $pgpoolport = 9999, 
@@ -133,12 +139,6 @@ class pg_monz (
   $pgpoolrolepassword = '', 
   $pgpooldatabase = 'postgres', 
   $pgpoolconf = '/usr/local/etc/pgpool.conf', 
-#pgsql_funcs.conf
-  $pghost = '127.0.0.1', 
-  $pgport = 5432, 
-  $pgrole = 'postgres', 
-  $pgrolepassword = '', 
-  $pgdatabase = 'postgres', 
 #files and directories
   $pgpoollogdir = '/var/log/pgpool', 
   $pgpoollogfile = 'pgpool.log', 
