@@ -6,7 +6,7 @@ The complete tutorial can be found [here](https://www.itenlight.com/blog/2016/06
 
 ## Bug in v0.1.1
 
-I must start with an apology because of a bug in version 0.1.1 of the module which caused that manifests that are including `pg_monz::server` class won't even compile at the server. The bug is caused by puppet-lint auto-fix feature which removed quotes from 'true' command. In the newest version 'true' is replaced with '/bin/true' to avoid any confusion. As it usually happens in life, the first 29 downloaders actually downloaded this exact version :( 
+I must start with an apology because of a bug in version 0.1.1 of the module which caused that manifests that are including `pg_monz::server` class won't even compile at the server. The bug is caused by puppet-lint auto-fix feature which removed quotes from `'true'` command. In the newest version `'true'` is replaced with `'/bin/true'` to avoid any confusion. As it usually happens in life, the first 29 downloaders actually downloaded this exact version :( 
 
 What to say... Sorry for inconvenience!
 
