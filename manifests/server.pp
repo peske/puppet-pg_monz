@@ -127,7 +127,7 @@ class pg_monz::server (
     }
     
     exec { 'check Template App pgpool-II watchdog':
-      command => true,
+      command => 'true',
       path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin',
                   '/usr/local/bin'],
       onlyif  => "test ! -f ${templates_dir}/Template App pgpool-II watchdog.xml",
@@ -151,7 +151,7 @@ class pg_monz::server (
     }
     
     exec { 'check Template App pgpool-II':
-      command => true,
+      command => 'true',
       path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin',
                   '/usr/local/bin'],
       onlyif  => "test ! -f ${templates_dir}/Template App pgpool-II.xml",
@@ -175,7 +175,7 @@ class pg_monz::server (
     }
     
     exec { 'check Template App PostgreSQL SR Cluster':
-      command => true,
+      command => 'true',
       path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin',
                   '/usr/local/bin'],
       onlyif  => "test ! -f ${templates_dir}/Template App PostgreSQL SR Cluster.xml",
@@ -199,7 +199,7 @@ class pg_monz::server (
     }
     
     exec { 'check Template App PostgreSQL':
-      command => true,
+      command => 'true',
       path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin',
                   '/usr/local/bin'],
       onlyif  => "test ! -f ${templates_dir}/Template App PostgreSQL.xml",
@@ -223,7 +223,7 @@ class pg_monz::server (
     }
     
     exec { 'check Template App PostgreSQL SR':
-      command => true,
+      command => 'true',
       path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin', '/usr/local/sbin',
                   '/usr/local/bin'],
       onlyif  => "test ! -f ${templates_dir}/Template App PostgreSQL SR.xml",
