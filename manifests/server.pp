@@ -15,6 +15,10 @@
 #   the class completely.
 #   Default:   true
 #
+# [*zabbix_user*]
+#   User Zabbix runs under.
+#   Default:   zabbix
+#
 # [*zabbix_agentd_conf*]
 #   Sets default {$ZABBIX_AGENTD_CONF} macro value.
 #   See http://pg-monz.github.io/pg_monz/index-en.html for details.
@@ -102,6 +106,7 @@
 #
 class pg_monz::server (
   $install_templates = true,
+  $zabbix_user = 'zabbix',
   $zabbix_agentd_conf = '/etc/zabbix/zabbix_agentd.conf',
   $pg_host_group = 'PostgreSQL',
   $pgscriptdir = '/usr/local/bin',
@@ -117,14 +122,12 @@ class pg_monz::server (
       
     $templates_dir = $zabbix::params::zabbix_template_dir
     
-    file { 'templates_dir':
-      ensure  => directory,
-      path    => $templates_dir,
-      owner   => 'zabbix',
-      group   => 'zabbix',
-      mode    => '0644',
-      require => Class['zabbix'],
-    }
+    ensure_resource('file', 'templates_dir',
+      {
+        'ensure' => 'directory',
+        'path'   => $templates_dir,
+        'owner'  => $zabbix_user
+      })
     
     exec { 'check Template App pgpool-II watchdog':
       command => '/bin/true',
@@ -136,8 +139,7 @@ class pg_monz::server (
     
     file { 'Template_App_pgpool-II_watchdog.xml':
       path    => '/tmp/Template_App_pgpool-II_watchdog.xml',
-      owner   => 'zabbix',
-      group   => 'zabbix',
+      owner   => $zabbix_user,
       mode    => '0644',
       content => template('pg_monz/Template_App_pgpool-II_watchdog.xml.erb'),
       require => Exec['check Template App pgpool-II watchdog'],
@@ -160,8 +162,7 @@ class pg_monz::server (
     
     file { 'Template_App_pgpool-II.xml':
       path    => '/tmp/Template_App_pgpool-II.xml',
-      owner   => 'zabbix',
-      group   => 'zabbix',
+      owner   => $zabbix_user,
       mode    => '0644',
       content => template('pg_monz/Template_App_pgpool-II.xml.erb'),
       require => Exec['check Template App pgpool-II'],
@@ -184,8 +185,7 @@ class pg_monz::server (
     
     file { 'Template_App_PostgreSQL_SR_Cluster.xml':
       path    => '/tmp/Template_App_PostgreSQL_SR_Cluster.xml',
-      owner   => 'zabbix',
-      group   => 'zabbix',
+      owner   => $zabbix_user,
       mode    => '0644',
       content => template('pg_monz/Template_App_PostgreSQL_SR_Cluster.xml.erb'),
       require => Exec['check Template App PostgreSQL SR Cluster'],
@@ -208,8 +208,7 @@ class pg_monz::server (
     
     file { 'Template_App_PostgreSQL.xml':
       path    => '/tmp/Template_App_PostgreSQL.xml',
-      owner   => 'zabbix',
-      group   => 'zabbix',
+      owner   => $zabbix_user,
       mode    => '0644',
       content => template('pg_monz/Template_App_PostgreSQL.xml.erb'),
       require => Exec['check Template App PostgreSQL'],
@@ -232,8 +231,7 @@ class pg_monz::server (
     
     file { 'Template_App_PostgreSQL_SR.xml':
       path    => '/tmp/Template_App_PostgreSQL_SR.xml',
-      owner   => 'zabbix',
-      group   => 'zabbix',
+      owner   => $zabbix_user,
       mode    => '0644',
       content => template('pg_monz/Template_App_PostgreSQL_SR.xml.erb'),
       require => Exec['check Template App PostgreSQL SR'],
