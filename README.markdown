@@ -55,6 +55,13 @@ class { 'pg_monz':
 
 ## Release History
 
+### v0.1.6
+
+**Date:** September 1. 2016
+
+**Release Info:**
+* Code cosmetics (thanks to puppet-lint).
+
 ### v0.1.5
 
 **Date:** Jun 9. 2016
