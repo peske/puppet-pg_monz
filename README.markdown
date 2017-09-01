@@ -57,7 +57,7 @@ class { 'pg_monz':
 
 ### v0.1.6
 
-**Date:** September 1. 2016
+**Date:** September 1. 2017
 
 **Release Info:**
 * Code cosmetics (thanks to puppet-lint).
